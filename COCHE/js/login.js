@@ -5,7 +5,7 @@ window.onpopstate = function () {                                       // Detec
 };
 
 // URL base del endpoint de usuarios en Spring Boot
-const API_URL = "http://localhost:8080/api/usuarios";                   // Dirección del controlador de la API REST en el Backend
+const API_URL = "http://localhost:8080/api/usuarios";                  // Dirección del controlador de la API REST en el Backend
 
 function validar() {
     // 1. Captura de datos ingresados en los inputs según los IDs del HTML
@@ -33,14 +33,13 @@ function validar() {
         .then(response => response.json())                             // Convierte la respuesta recibida en un arreglo JSON
         .then(usuarios => {                                            // Recibe el listado de usuarios existentes en MySQL
             
-            // Busca si existe un usuario cuya clave y nombre coincidan con los ingresados
             // Busca si existe un usuario ignorando mayúsculas/minúsculas
-    const usuarioEncontrado = usuarios.find(u => {
-        const nombreBD = (u.nombre_USUARIO || u.NOMBRE_USUARIO || u.nombre_usuario || "").toString().trim().toLowerCase();
-        const passBD = (u.password || u.PASSWORD || "").toString().trim();
+            const usuarioEncontrado = usuarios.find(u => {
+                const nombreBD = (u.nombre_USUARIO || u.NOMBRE_USUARIO || u.nombre_usuario || "").toString().trim().toLowerCase();
+                const passBD = (u.password || u.PASSWORD || "").toString().trim();
 
-        return nombreBD === user.trim().toLowerCase() && passBD === pass.trim();
-   });
+                return nombreBD === user.trim().toLowerCase() && passBD === pass.trim();
+           });
 
             if (usuarioEncontrado) {
                 // Captura las propiedades del usuario autenticado
@@ -55,10 +54,10 @@ function validar() {
                 if (rol === "administrador") {
                     mostrarMensaje("✅ ¡Bienvenid@! Entrando como Admin..."); // Muestra Toast de éxito para Administrador
                     setTimeout(() => {
-                        window.location.href = "html/index_admin.html";     // Redirige al panel principal del Administrador
+                        window.location.href = "html/index_admin.html";    // Redirige al panel principal del Administrador
                     }, 2000);
                 } else {
-                    mostrarMensaje("✅ Acceso concedido: Rol Usuario");     // Muestra Toast de éxito para el rol Usuario
+                    mostrarMensaje("✅ Acceso concedido: Rol Usuario");    // Muestra Toast de éxito para el rol Usuario
                     setTimeout(() => {
                         window.location.href = "html/index_usuarios.html";  // Redirige a la vista correspondiente
                     }, 2000);
@@ -71,17 +70,14 @@ function validar() {
         })
         .catch(error => {
             console.error("Error en la conexión:", error);             // Imprime el detalle del error en la consola del navegador
-            mostrarMensaje("❌ Error de conexión con el servidor");     // Notifica si Spring Boot no está disponible
+            mostrarMensaje("❌ Error de conexión con el servidor");    // Notifica si Spring Boot no está disponible
         });
+}
 
 
-
- }
-    // ... (Aquí arriba tienes tu función validar() que ya revisamos) ...
-
-// Función para gestionar la recuperación de contraseña notificando al administrador
+// Función para gestionar la recuperación de contraseña notificando al administrador (CORREGIDA)
 function recuperarContrasena(event) {
-    event.preventDefault(); // Yo evito que la página se recargue por defecto
+    event.preventDefault(); // Evita que la página se recargue por defecto
 
     Swal.fire({
         title: 'Notificar al Administrador',
@@ -110,10 +106,19 @@ function recuperarContrasena(event) {
                 body: JSON.stringify({
                     usuario: usuarioSolicitante,
                     mensaje: `El usuario '${usuarioSolicitante}' ha solicitado un restablecimiento de contraseña.`,
-                    fecha: new Date().toISOString()
-                })
+                    fecha: new Date().toISOString(),
+                    estado: "Pendiente" // <--- Esto es clave para que no se guarde en NULL
+            })
+            
             })
             .then(response => {
+                // Valida si el servidor respondió con un código de éxito (200-299)
+                if (!response.ok) {
+                    throw new Error("El servidor respondió con un error: " + response.status);
+                }
+                return response.text().then(text => text ? JSON.parse(text) : {}); // Maneja respuestas JSON vacías o con texto
+            })
+            .then(data => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Solicitud enviada',
@@ -122,15 +127,15 @@ function recuperarContrasena(event) {
                 });
             })
             .catch(error => {
-                // Si el Back-End no está activo en el momento, muestro una alerta informativa de respaldo
+                console.error("Error al enviar la solicitud:", error);
+                // Si ocurre un error de red o Spring Boot devuelve error, muestra alerta de fallo
                 Swal.fire({
-                    icon: 'info',
-                    title: 'Solicitud Registrada',
-                    text: 'Se ha notificado al Administrador de COCHÉ para que restablezca tu acceso.',
+                    icon: 'error',
+                    title: 'Error de envío',
+                    text: 'No se pudo conectar con el servidor de Spring Boot para notificar al Administrador.',
                     confirmButtonColor: '#5c3d2e'
                 });
             });
         }
     });
- 
 }

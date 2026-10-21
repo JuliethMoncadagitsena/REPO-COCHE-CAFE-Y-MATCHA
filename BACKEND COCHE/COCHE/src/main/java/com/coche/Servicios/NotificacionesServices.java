@@ -17,11 +17,9 @@ public class NotificacionesServices {
     }
 
     public NotificacionesEntity save(NotificacionesEntity entity) {
+        if (entity.getEstado() == null || entity.getEstado().isEmpty()) {
+            entity.setEstado("Pendiente");
+        }
         return repositorio.save(entity);
-    }
-
-    public Object getById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
     }
 }

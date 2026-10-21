@@ -18,8 +18,8 @@ function cargarNotificacionesAdmin() {
     fetch(API_NOTIFICACIONES)
         .then(response => response.json())
         .then(notificaciones => {
-            // Filtrar del listado general solo las solicitudes cuyo estado sea exactamente "Pendiente"
-            const pendientes = notificaciones.filter(n => n.estado === "Pendiente");
+            // Filtrar del listado general las solicitudes pendientes (incluyendo si el estado es null o vacío)
+            const pendientes = notificaciones.filter(n => !n.estado || n.estado.toLowerCase() === "pendiente");
 
             // Si no hay solicitudes pendientes, muestra un mensaje de éxito en el panel
             if (pendientes.length === 0) {

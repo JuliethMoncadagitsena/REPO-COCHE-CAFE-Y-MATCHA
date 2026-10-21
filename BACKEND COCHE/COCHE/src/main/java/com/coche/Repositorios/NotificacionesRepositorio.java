@@ -6,4 +6,4 @@ import com.coche.Entidades.NotificacionesEntity;
 
 @Repository
 public interface NotificacionesRepositorio extends JpaRepository<NotificacionesEntity, Integer> {
-} 
+}

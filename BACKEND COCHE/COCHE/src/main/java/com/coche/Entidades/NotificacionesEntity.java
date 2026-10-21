@@ -15,6 +15,8 @@ public class NotificacionesEntity {
     private String mensaje;
     private LocalDateTime fecha;
     private String estado;
+
+    
     public Integer getIdNOTIFICACION() {
         return idNOTIFICACION;
     }
