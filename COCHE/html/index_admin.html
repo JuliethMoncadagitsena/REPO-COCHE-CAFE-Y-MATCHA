@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador - COCHÉ CAFÉ</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index_admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+              <img src="../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar">
+              <h3>COCHÉ CAFÉ</h3>
+            </div>
+            
+            <nav class="menu">
+                <p class="menu-label">Operaciones</p>
+                <a href="#" class="active"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="../html/mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a>
+                <a href="../html/productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a>
+
+
+                <p class="menu-label">Administración</p>
+                <a href="../html/inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+                <a href="../html/reportes.html"><i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a>
+                <a href="../html/cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a>
+                <a href="../html/Usuarios/Listar.html"><i class="fa-solid fa-users"></i> Usuarios</a>   
+                <a href="../html/configuracion.html"><i class="fa-solid fa-gears"></i> Configuración</a>
+
+
+            </nav>
+
+           <div class="sidebar-footer">
+              <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()">
+                 <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+              </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                  <h2>Bienvenida, <span id="usuario"></span></h2> <p>Panel de Control Administrativo</p>
+                </div>
+                <div class="user-profile">
+                  <img src="" alt="Perfil" class="avatar" id="user-avatar">
+                </div>
+            </header>
+            <section class="dashboard-cards">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="card-info">
+                        <h4>Ventas del Día</h4>
+                        <p>$0.000</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="card-info">
+                        <h4>Mesas Ocupadas</h4>
+                        <p>0 / 8</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="card-info">
+                        <h4>Stock Bajo</h4>
+                        <p>2 Productos del inventario</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="placeholder-section">
+                <h3>Resumen de Actividad Reciente</h3>
+                <p>Aquí aparecerán los últimos movimientos de la cafetería.</p>
+            </div>
+
+       <!-- ========================================== -->
+<!-- SECCIÓN DE NOTIFICACIONES Y SOLICITUDES    -->
+<!-- ========================================== -->
+<section class="notificaciones-section" style="margin-bottom: 20px;">
+    <!-- Tarjeta contenedora con estilos limpios acordes al diseño de COCHÉ CAFÉ -->
+    <div class="card-notificaciones" style="background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        
+        <!-- Título de la sección con icono de campana -->
+        <h3 style="color: #5c3d2e; display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+            <i class="fa-solid fa-bell"></i> Solicitudes de Recuperación de Contraseña
+        </h3>
+        
+        <!-- Subtítulo informativo -->
+        <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">
+            Notificaciones enviadas por los usuarios desde la pantalla de login.
+        </p>
+        
+        <!-- CONTENEDOR DINÁMICO: Aquí es donde JavaScript inyectará las tarjetas de solicitudes -->
+        <div id="listaNotificaciones">
+            <p style="color: #777;">Cargando solicitudes...</p>
+        </div>
+
+    </div>
+</section>      
+        <!-- Lista dinámica donde se cargarán las alertas -->
+        <div id="listaNotificaciones" style="margin-top: 15px;">
+            <p>Cargando notificaciones...</p>
+        </div>
+    </div>
+       </section>
+        </main>
+    </div>
+
+
+<script>
+              /* === SEGURIDAD GLOBAL COCHE === */
+
+
+
+</script>
+<script src="../js/logo.js"></script>
+
+
+    <script src="../js/notificacion_admin.js"></script>
+    <script src="../js/obligatorios.js"></script>
+</body>
+</html>
+
+

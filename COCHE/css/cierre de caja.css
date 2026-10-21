@@ -1,0 +1,212 @@
+
+/* 1. CONTENEDOR PRINCIPAL Y LAYOUT */
+.main-panel {
+    padding: 30px 50px; /* Espaciado generoso para que respire */
+    background-color: #fdfbf7; /* Crema suave de fondo */
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-bienvenida {
+    margin-bottom: 30px;
+}
+
+.header-bienvenida h2 {
+    color: #4a332d;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 2. GRID DE DOS COLUMNAS (Pantalla Completa) */
+.flex-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Equilibrio entre conteo y resumen */
+    gap: 40px; /* Separación estética entre secciones */
+    align-items: start;
+}
+
+/* 3. TARJETAS (SECTIONS) */
+.section-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 25px rgba(74, 51, 45, 0.05); /* Sombra elegante */
+    border: 1px solid #f1eee9;
+}
+
+.section-container h4 {
+    color: #4a332d;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f4f1ea;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 4. FILAS DE CONTEO (BILLETES) */
+.moneda-row {
+    display: grid;
+    grid-template-columns: 1fr 140px; /* Nombre izquierda, Input derecha */
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f9f7f2;
+}
+
+.moneda-row:last-child {
+    border-bottom: none;
+}
+
+.moneda-row label {
+    font-weight: 500;
+    color: #5d4037;
+    font-size: 1.1rem;
+}
+
+.moneda-row input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcd7cf;
+    border-radius: 8px;
+    text-align: right;
+    font-size: 1rem;
+    background: #fdfcfb;
+    transition: all 0.3s ease;
+}
+
+.moneda-row input:focus {
+    border-color: #e67e22;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+}
+
+/* 5. VISOR DE TOTAL FÍSICO (CAJA MARRÓN) */
+.total-arqueo-box {
+    background: #4a332d;
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.total-arqueo-box span {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.total-arqueo-box strong {
+    display: block;
+    font-size: 3rem; /* Destacado máximo */
+    margin-top: 10px;
+}
+
+/* 6. VERIFICACIÓN DEL SISTEMA (DERECHA) */
+.resumen-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.resumen-item b, .resumen-item span[id] {
+    font-weight: 700;
+    color: #4a332d;
+}
+
+.validation-row {
+    background: #fdfbf7;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin: 8px 0;
+}
+
+.check-val {
+    width: 18px;
+    height: 18px;
+    accent-color: #4a332d;
+    cursor: pointer;
+}
+
+/* 7. ALERTAS DINÁMICAS DE CUADRE */
+.resultado-cuadre {
+    text-align: center;
+    margin: 25px 0;
+    padding: 20px;
+    background: #fdfcfb;
+    border-radius: 15px;
+}
+
+.cuadre-info {
+    padding: 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 15px;
+    transition: all 0.4s ease;
+}
+
+.cuadre-exito { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+.cuadre-error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+.cuadre-sobrante { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+/* 8. OBSERVACIONES Y NOTAS */
+.observaciones-cierre {
+    margin-top: 25px;
+}
+
+.observaciones-cierre label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.observaciones-cierre textarea {
+    width: 100%;
+    height: 90px;
+    border: 1px solid #dcd7cf;
+    border-radius: 12px;
+    padding: 15px;
+    font-family: inherit;
+    resize: none;
+    transition: border 0.3s;
+}
+
+.observaciones-cierre textarea:focus {
+    border-color: #4a332d;
+    outline: none;
+}
+
+/* 9. BOTÓN FINALIZAR (GRANDE Y ESTÉTICO) */
+.btn-finalizar-cierre {
+    width: 100%;
+    padding: 20px;
+    background: #4a332d;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-finalizar-cierre:hover {
+    background: #e67e22; /* Cambio a naranja corporativo */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(230, 126, 34, 0.2);
+}

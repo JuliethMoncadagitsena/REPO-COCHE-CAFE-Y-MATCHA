@@ -1,0 +1,110 @@
+/* Estilos específicos para la tabla de COCHÉ */
+.inventario-container {
+    padding: 20px;
+}
+
+.acciones-inventario {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* --- BOTÓN AGREGAR (ESTILO REDONDEADO) --- */
+.btn-registrar {
+    background-color: #4b2c20 !important; /* El color café oscuro de COCHÉ */
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px 25px !important;
+    border-radius: 12px !important; /* Bordes redondeados como en la imagen */
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Efecto al pasar el mouse */
+.btn-registrar:hover {
+    background-color: #3d241a !important; /* Un tono un poco más oscuro */
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Estilo para el icono del signo + dentro del botón */
+.btn-registrar i {
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+}
+
+.tabla-wrapper {
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-coche {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.tabla-coche th {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #f4ece2;
+    color: #ffffff;
+}
+
+.tabla-coche td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Esta clase la busca el JS para resaltar stock bajo */
+.fila-alerta {
+    background-color: #ffeded !important; /* Fondo rojo claro */
+    color: #c62828 !important;            /* Texto rojo fuerte */
+}
+.search-box {
+    position: relative !important;
+    width: 350px !important; /* Ancho cómodo para el administrador */
+}
+
+.search-box i {
+    position: absolute !important;
+    left: 18px !important; /* Espacio desde la izquierda para el icono */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #4b2c20 !important; /* Café oscuro para combinar con el borde */
+    font-size: 1em !important;
+    z-index: 5 !important;
+}
+
+.search-box input {
+    width: 100% !important;
+    padding: 12px 20px 12px 50px !important; /* Más padding a la izquierda para el icono */
+    border-radius: 50px !important; /* ¡ESTO LO HACE REDONDEADO! */
+    border: 1.5px solid #4b2c20 !important; /* El borde café oscuro exacto */
+    background-color: #fff !important;
+    outline: none !important;
+    font-size: 0.95em !important;
+    color: #333 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important; /* Sombra suave para profundidad */
+    transition: all 0.3s ease;
+}
+
+/* Efecto al hacer clic o focus */
+.search-box input:focus {
+    border-color: #613c2f !important; /* Un café ligeramente más claro */
+    box-shadow: 0 4px 8px rgba(75, 44, 32, 0.15) !important;
+}
+
+/* Estilo del texto de marcador (placeholder) */
+.search-box input::placeholder {
+    color: #888 !important;
+    font-style: normal;
+}

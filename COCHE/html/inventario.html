@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario - COCHÉ</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index_admin.css">
+    <link rel="stylesheet" href="../css/inventario.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+              <img src="../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar">
+              <h3>COCHÉ CAFÉ</h3>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">Operaciones</p>
+                <a href="../html/index_admin.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="../html/mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a>
+                <a href="../html/productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a>
+
+                <p class="menu-label">Administración</p>
+                <a href="#" class="active"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+                <a href="../html/reportes.html"><i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a>
+                <a href="../html/cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a>
+                <a href="../html/Usuarios/Listar.html"><i class="fa-solid fa-users"></i> Usuarios</a>
+                <a href="../html/configuracion.html"><i class="fa-solid fa-gears"></i> Configuración</a>
+            </nav>
+            <div class="sidebar-footer">
+              <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()">
+                 <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+              </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h2>Gestión de Inventario</h2>
+                    <p>Bienvenido, <span id="usuario">Administrador</span></p>
+                </div>
+                <img src="" id="user-avatar" class="avatar">
+            </header>
+
+            <section class="inventario-container">
+                <div class="acciones-inventario">
+                    <button class="btn-registrar" onclick="abrirModalRegistro()"> Registrar Nuevo Insumo </button>
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="busquedaInsumo" placeholder="Buscar insumo..." onkeyup="filtrarInventario()">
+                    </div>
+                </div>
+
+                <div class="tabla-wrapper">
+                    <table class="tabla-coche">
+                        <thead>
+                            <tr>
+                                <th>Insumo</th>
+                                <th>Stock</th>
+                                <th>U. Medida</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaInventario">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/obligatorios.js"></script>
+    <script src="../js/inventario.js"></script>
+
+</body>
+</html>

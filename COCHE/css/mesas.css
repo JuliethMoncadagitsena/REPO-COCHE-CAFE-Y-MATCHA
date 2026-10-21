@@ -1,0 +1,42 @@
+.grid-mesas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.mesa-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.mesa-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(75, 44, 32, 0.15);
+}
+
+/* Colores de estado */
+.mesa-item.libre { border-top: 6px solid #2ecc71; }
+.mesa-item.ocupada { border-top: 6px solid #e74c3c; }
+
+.mesa-icon i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #4b2c20;
+}
+
+.mesa-info h3 { margin: 0; color: #4b2c20; }
+.mesa-info span { font-size: 0.9rem; color: #7f8c8d; }
+
+/* Indicadores superiores */
+.status-indicators { display: flex; gap: 20px; padding-left: 20px; margin-bottom: 10px; }
+.dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; }
+.dot.libre { background-color: #2ecc71; }
+.dot.ocupada { background-color: #e74c3c; }

@@ -1,0 +1,142 @@
+/* Estilos específicos para Gestión de Personal - COCHE */
+
+.table-container {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.table-header h3 {
+    color: var(--cafe-oscuro);
+    font-size: 1.4rem;
+}
+
+/* Botón de Agregar Usuario */
+.btn-add {
+    background-color: var(--cafe-medio);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-add:hover {
+    background-color: var(--cafe-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(75, 44, 32, 0.3);
+}
+
+/* Tabla */
+.user-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Separación entre filas */
+    text-align: left;
+}
+
+.user-table th {
+    color: var(--cafe-medio);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 15px;
+    border-bottom: 2px solid var(--beige);
+}
+
+.user-table td {
+    padding: 15px;
+    background-color: #fff;
+    border-bottom: 1px solid var(--hueso);
+}
+
+/* Badges de Roles */
+.role-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.role-admin {
+    background-color: #efebe9; /* Café muy claro */
+    color: var(--cafe-oscuro);
+    border: 1px solid var(--cafe-medio);
+}
+
+.role-waiter {
+    background-color: var(--beige);
+    color: var(--cafe-oscuro);
+}
+
+/* Acciones (Iconos) */
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.actions i {
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-edit { color: #5d4037; }
+.btn-edit:hover { color: #0d6efd; transform: scale(1.2); }
+
+.btn-delete { color: #e57373; }
+.btn-delete:hover { color: #d32f2f; transform: scale(1.2); }
+
+/* Estado Activo */
+.status-active {
+    color: #2e7d32;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+/* Estilo redondeado con borde café estilo COCHÉ CAFÉ */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #4b2c20; /* Borde café institucional */
+    border-radius: 25px;       /* Bordes completamente redondeados */
+    padding: 8px 18px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-box i {
+    color: #4b2c20;
+    font-size: 14px;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #4b2c20;
+    width: 100%;
+}
+
+.search-box input::placeholder {
+    color: #8c7b75;
+}

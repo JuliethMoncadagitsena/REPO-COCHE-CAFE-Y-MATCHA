@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración Empresa - COCHÉ CAFÉ</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index_admin.css">
+    <link rel="stylesheet" href="../css/configuracion.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+              <img src="../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar">
+              <h3>COCHÉ CAFÉ</h3>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">Operaciones</p>
+                <a href="../html/index_admin.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="../html/mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a>
+                <a href="../html/productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a>
+
+
+                <p class="menu-label">Administración</p>
+                <a href="../html/inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+                <a href="../html/reportes.html"><i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a>
+                <a href="../html/cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a>
+                <a href="../html/Usuarios/Listar.html"><i class="fa-solid fa-users"></i> Usuarios</a>
+                <a href="#" class="active"><i class="fa-solid fa-gears"></i> Configuración</a>
+            </nav>
+            <div class="sidebar-footer">
+              <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()">
+                 <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+              </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h2>Configuración del Negocio</h2>
+                    <p>Actualiza los datos institucionales de COCHÉ</p>
+                </div>
+                <img src="" id="user-avatar" class="avatar">
+            </header>
+
+            <section class="config-container">
+                <form id="formConfig" class="config-grid">
+                    <div class="form-group">
+                        <label>Nombre del Establecimiento</label>
+                        <input type="text" id="nombreEmpresa" placeholder="Nombre del local">
+                    </div>
+                    <div class="form-group">
+                        <label>NIT / RUT</label>
+                        <input type="text" id="nitEmpresa" placeholder="Ej: 123456789-1">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono de Contacto</label>
+                        <input type="text" id="telEmpresa" placeholder="Ej: +57 300...">
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input type="text" id="ciudadEmpresa" placeholder="Ej: Popayán">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Dirección Física</label>
+                        <input type="text" id="dirEmpresa" placeholder="Calle ... # ...">
+                    </div>
+                    <div class="form-group full-width" style="border-top: 1px solid var(--beige); padding-top: 20px;">
+                        <label><i class="fa-solid fa-image"></i> Logo de la Empresa (Imagen para Factura)</label>
+                        <input type="file" id="logoEmpresa" accept="image/*" onchange="previsualizarLogo(this)">
+                        <div id="preview-container" style="margin-top: 10px;">
+                            <img id="logoPreview" src="" style="max-width: 150px; border-radius: 10px; display: none; border: 2px solid var(--cafe-claro);">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-save full-width" onclick="guardarCambios()">
+                        <i class="fa-solid fa-floppy-disk"></i> GUARDAR CAMBIOS
+                    </button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nombre = localStorage.getItem("nombreUsuario");
+            if (!nombre) {
+                window.location.replace("../Login.html");
+            }
+            const img = document.getElementById("user-avatar");
+            if (img && nombre) {
+                img.src = `https://ui-avatars.com/api/?name=${nombre.replace(/\s+/g, '+')}&background=4b2c20&color=fff`;
+            }
+        });
+
+        function guardarCambios() {
+            // Capturamos los valores actuales de los inputs
+            const vNombre = document.getElementById("nombreEmpresa").value.trim();
+            const vNit = document.getElementById("nitEmpresa").value.trim();
+            const vTel = document.getElementById("telEmpresa").value.trim();
+            const vCiudad = document.getElementById("ciudadEmpresa").value.trim();
+            const vDir = document.getElementById("dirEmpresa").value.trim();
+
+            // REVISIÓN DE CUALQUIER CAMPO VACÍO
+            if (vNombre === "" || vNit === "" || vTel === "" || vCiudad === "" || vDir === "") {
+                Swal.fire({
+                    title: '¡Faltan datos!',
+                    text: 'Todos los campos son obligatorios.',
+                    icon: 'error',
+                    confirmButtonColor: '#d33',
+                    background: '#fdf5e6',
+                    color: '#4b2c20'
+                });
+            } else {
+                Swal.fire({
+                    title: '¡Ajustes Guardados!',
+                    text: 'La información de la empresa ha sido actualizada.',
+                    icon: 'success',
+                    confirmButtonColor: '#4b2c20',
+                    background: '#fdf5e6',
+                    color: '#4b2c20'
+                });
+            }
+        }
+        </script>
+    <script>
+        // Carga de avatar automática
+        document.addEventListener("DOMContentLoaded", function() {
+            const nombre = localStorage.getItem("nombreUsuario");
+            const img = document.getElementById("user-avatar");
+            if (img && nombre) img.src = `https://ui-avatars.com/api/?name=${nombre.replace(/\s+/g, '+')}&background=4b2c20&color=fff`;
+        });
+
+        function guardar() {
+            Swal.fire({ title: '¡Guardado!', text: 'Los datos de COCHÉ han sido actualizados.', icon: 'success', confirmButtonColor: '#4b2c20' });
+        }
+    </script>
+       <script>//FUNCIONES JS
+              //que al iniciar sesion aparezca Bienvenido(nombre del usuario)
+     document.addEventListener("DOMContentLoaded", function() {
+        // 1. Buscamos el nombre que guardamos en el login
+        const nombreEnMemoria = localStorage.getItem("nombreUsuario");
+        
+        // 2. Buscamos el elemento con el ID que me dijiste: "usuario"
+        const etiquetaNombre = document.getElementById("usuario");
+
+        if (nombreEnMemoria && etiquetaNombre) {
+            // 3. Escribimos el nombre en la pantalla
+            etiquetaNombre.innerText = nombreEnMemoria;
+            console.log("Nombre aplicado con éxito al ID 'usuario': " + nombreEnMemoria);
+        } else {
+            console.log("Error: No hay datos en localStorage o no existe el ID 'usuario' en este HTML");
+            if(etiquetaNombre) etiquetaNombre.innerText = "Usuario";
+        }
+       });
+    </script>
+    <script>  //Funcion para que cree una foto de perfil de acuerdo al inicio de sesión
+         document.addEventListener("DOMContentLoaded", function() {
+        // 1. Traemos el nombre que guardamos en el login
+        const nombreLogueado = localStorage.getItem("nombreUsuario");
+        
+        // 2. Buscamos los elementos en el HTML
+        const displayNombre = document.getElementById("usuario");
+        const displayAvatar = document.getElementById("user-avatar");
+
+        if (nombreLogueado) {
+            // Ponemos el nombre en el texto
+            if (displayNombre) displayNombre.innerText = nombreLogueado;
+
+            // CREAMOS EL AVATAR DINÁMICO
+            // Cambiamos espacios por '+' para la URL
+            const nombreLimpio = nombreLogueado.trim().replace(/\s+/g, '+');
+            
+            // Armamos la URL con el nombre del usuario actual
+            // Usamos el color café (#4b2c20) que elegiste para COCHE
+            const urlDinamica = `https://ui-avatars.com/api/?name=${nombreLimpio}&background=4b2c20&color=fff`;
+
+            // Se la ponemos a la imagen
+            if (displayAvatar) displayAvatar.src = urlDinamica;
+        } else {
+            // Si por alguna razón no hay nombre, ponemos uno por defecto
+            if (displayAvatar) displayAvatar.src = "https://ui-avatars.com/api/?name=U&background=4b2c20&color=fff";
+        }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+              /* === SEGURIDAD GLOBAL COCHE === */
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Verificación de Entrada: Si no hay usuario en memoria, rebota al Login inmediatamente
+    if (!localStorage.getItem("nombreUsuario")) {
+        window.location.replace("../Login.html"); 
+    }
+
+    // 2. Sincronización entre Pestañas: Si cierras sesión en una, se cierran automáticamente todas
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'nombreUsuario' && !event.newValue) {
+            Swal.fire({
+                title: 'Sesión Finalizada',
+                text: 'Se ha cerrado la sesión en otra ventana del navegador.',
+                icon: 'info',
+                confirmButtonColor: '#4b2c20',
+                background: '#fdf5e6',
+                color: '#4b2c20'
+            }).then(() => {
+                window.location.replace("../Login.html");
+            });
+        }
+    });
+
+    // --- LÓGICA DE NOMBRE Y AVATAR ---
+    const nombre = localStorage.getItem("nombreUsuario");
+    const display = document.getElementById("usuario");
+    const avatar = document.getElementById("user-avatar");
+
+    if (nombre) {
+        if (display) display.innerText = nombre;
+        const nombreLimpio = nombre.trim().replace(/\s+/g, '+');
+        const urlAvatar = `https://ui-avatars.com/api/?name=${nombreLimpio}&background=4b2c20&color=fff`;
+        if (avatar) avatar.src = urlAvatar;
+    }
+});
+           // Funcion para cerrar sesion
+    function confirmarCierreSesion() {
+        Swal.fire({
+            title: '¿Cerrar Sesión?',
+            text: "¡Esperamos verte pronto en COCHÉ CAFÉ!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4b2c20', // Café oscuro
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, salir',
+            cancelButtonText: 'Cancelar',
+            background: '#fdf5e6',         // Color hueso
+            color: '#4b2c20'              // Letra café
+        }).then((result) => {
+            // Si el usuario hace clic en el botón de confirmación
+            if (result.isConfirmed) {
+                // Borra el nombre guardado en el navegador
+                localStorage.removeItem("nombreUsuario");
+                
+                // Redirige a la página de login
+                window.location.href = "../Login.html";
+            }
+        });
+    }
+</script>
+<script src="../js/configuracion.js"></script>
+<scripr src="../js/logo.js"></scripr>
+</body>
+</html>

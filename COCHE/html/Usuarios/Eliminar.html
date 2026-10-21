@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Especifica que el documento sigue el estándar HTML5 -->
+<html lang="es"> <!-- Define el idioma del contenido de la página como español -->
+<head> <!-- Inicio de la sección de cabecera y metadatos -->
+    <meta charset="UTF-8"> <!-- Configura la codificación UTF-8 para soportar tildes, ñ y caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la escala visual para una correcta adaptación en móviles -->
+    <title>Eliminar Usuario - COCHÉ CAFÉ</title> <!-- Define el nombre que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="../../css/base.css"> <!-- Carga los estilos CSS base compartidos por todo el sistema -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Importa la librería SweetAlert2 para mostrar el modal de confirmación -->
+</head> <!-- Fin del bloque de metadatos de la página -->
+
+<body style="background:#4b2c20;"> <!-- Aplica el color café institucional de fondo mientras se muestra la alerta -->
+    <script src="../../js/usuarios_api.js"></script> <!-- Carga las funciones JS que manejan la API (incluida confirmarEliminar) -->
+    
+    <script> <!-- Bloque de script incrustado para la lógica de la redirección y confirmación -->
+        document.addEventListener("DOMContentLoaded", () => { // Espera a que el DOM cargue por completo antes de ejecutar la confirmación
+            const urlParams = new URLSearchParams(window.location.search); // Parsea los parámetros pasados en la URL (Query Params)
+            const id = urlParams.get("id"); // Extrae el parámetro de la URL (ejemplo: eliminar.html?id=3)
+            
+            if (id) { // Evalúa si existe un parámetro 'id' válido en la URL
+                Swal.fire({ // Despliega la ventana modal emergente con SweetAlert2
+                    title: '¿Eliminar usuario?', // Título principal del mensaje de confirmación
+                    text: `¿Desea dar de baja permanentemente al usuario con ID ${id}?`, // Mensaje que incluye dinámicamente el ID capturado
+                    icon: 'warning', // Muestra el ícono de advertencia (triángulo amarillo)
+                    showCancelButton: true, // Habilita el botón de cancelación en la ventana modal
+                    confirmButtonColor: '#4b2c20', // Aplica el color café institucional al botón de confirmación
+                    cancelButtonColor: '#d33', // Aplica un color rojo de alerta al botón de cancelar
+                    confirmButtonText: 'Sí, eliminar', // Texto que se muestra dentro del botón de aceptar
+                    cancelButtonText: 'Cancelar', // Texto que se muestra dentro del botón de cancelar
+                    background: '#fdf5e6', // Fondo color crema institucional para el recuadro del modal
+                    color: '#4b2c20' // Color café para el texto interno del modal
+                }).then((result) => { // Promesa que captura la acción/clic seleccionado por el usuario
+                    if (result.isConfirmed) { // Si el usuario hizo clic en "Sí, eliminar"
+                        confirmarEliminar(id); // Ejecuta la función de usuarios_api.js para enviar la petición DELETE
+                    } else { // Si el usuario hizo clic en "Cancelar" o cerró el modal
+                        window.location.href = "listar.html"; // Regresa de inmediato a la tabla de usuarios
+                    } 
+                }); 
+            } else { // Si no se proporcionó ningún ID en la URL de acceso
+                window.location.href = "listar.html"; // Redirige automáticamente al listado principal
+            } 
+        }); 
+    </script> <!-- Fin del bloque de script dinámico -->
+</body> <!-- Fin del cuerpo del documento HTML -->
+</html> <!-- Fin del documento HTML -->

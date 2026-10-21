@@ -1,0 +1,200 @@
+/* =======================================================
+   ESTILOS COMPLETOS: MÓDULO DE VENTAS Y REPORTES - COCHE
+   ======================================================= */
+
+/* 1. Ajustes Globales y Pantalla Completa */
+* {
+    box-sizing: border-box; /* Asegura que el padding no desborde los elementos */
+}
+
+.main-panel {
+    background-color: #f4f1ea; /* Crema corporativo */
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* 2. Header Superior (Estirado) */
+.header-bienvenida {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.saldo-inicial-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 3. Estructura de Grillas (Grid) - Corregido para ocupar toda la hoja */
+.flex-content, .ventas-analisis-grid {
+    display: grid;
+    /* Usamos 1fr para que ambas columnas crezcan proporcionalmente */
+    grid-template-columns: 1fr 1fr; 
+    gap: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* 4. Contenedores de Sección */
+.section-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.section-container h4 {
+    color: #4a332d;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f4f1ea;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 5. Formularios y Botones */
+.section-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-coche, .input-coche-sm {
+    padding: 12px;
+    border: 1px solid #dcd7cf;
+    border-radius: 8px;
+    background: #faf9f6;
+    width: 100%;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.input-coche:focus {
+    border-color: #4a332d;
+}
+
+.btn-primario, .btn-primario-sm {
+    background: #4a332d; /* Café COCHE */
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.btn-primario:hover {
+    background: #362521;
+}
+
+.btn-secundario-sm {
+    background: #e67e22; /* Naranja COCHE */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 6. Tablas de Datos */
+.table-scroll {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.tabla-coche {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-coche th {
+    background: #faf9f6;
+    color: #4a332d;
+    padding: 15px;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #f4f1ea;
+}
+
+.tabla-coche td {
+    padding: 15px;
+    border-bottom: 1px solid #f4f1ea;
+    font-size: 0.95rem;
+}
+
+/* 7. Colores Contables */
+.monto-salida { color: #e74c3c; font-weight: bold; } /* Rojo para gastos */
+.monto-propina { color: #3498db; font-weight: bold; } /* Azul para propinas */
+.monto-venta { color: #2ecc71; font-weight: bold; } /* Verde para ingresos netos */
+
+/* 8. Gráfica y Reportes */
+.grafica-container {
+    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.total-ingresos-box {
+    background-color: #4b2c20; /* El café oscuro de COCHÉ */
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-ingresos-box label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.monto-total-display span {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.monto-total span {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* 9. Decoración y Separadores */
+.divisor {
+    border: 0;
+    border-top: 2px dashed #dcd7cf;
+    margin: 40px 0;
+}
+
+.btn-ver-mas {
+    background: none;
+    border: none;
+    color: #4a332d;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* 10. Adaptabilidad (Responsive) */
+@media (max-width: 1100px) {
+    .flex-content, .ventas-analisis-grid {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+}

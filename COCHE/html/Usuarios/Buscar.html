@@ -1,0 +1,67 @@
+<!DOCTYPE html> <!-- Especifica al navegador que el documento utiliza el estándar HTML5 -->
+<html lang="es"> <!-- Define el idioma principal de la página como español -->
+<head> <!-- Inicio de la sección de metadatos y enlaces del documento -->
+    <meta charset="UTF-8"> <!-- Configura la codificación UTF-8 para aceptar tildes y caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Permite que la interfaz sea responsiva en distintos dispositivos -->
+    <title>Buscar Usuarios - COCHÉ CAFÉ</title> <!-- Título que se muestra en la pestaña del navegador -->
+    
+    <!-- Hojas de estilo CSS -->
+    <link rel="stylesheet" href="../../css/base.css"> <!-- Carga estilos generales compartidos (resets, fuentes, variables) -->
+    <link rel="stylesheet" href="../../css/index_admin.css"> <!-- Carga estilos del diseño de administración (sidebar, topbar) -->
+    <link rel="stylesheet" href="../../css/usuarios.css"> <!-- Carga estilos para las tablas y cajas del módulo de usuarios -->
+    
+    <!-- Librerías de iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Carga la librería Font Awesome para íconos -->
+</head> <!-- Fin del bloque de metadatos -->
+
+<body> <!-- Inicio del cuerpo visible de la página web -->
+    <div class="container"> <!-- Contenedor principal para la maquetación en pantalla -->
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar"> <!-- Menú lateral de la interfaz -->
+            <div class="logo-section"> <!-- Contenedor de la identidad visual de la marca -->
+              <img src="../../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar"> <!-- Muestra la imagen del logo -->
+              <h3>COCHÉ CAFÉ</h3> <!-- Nombre comercial del establecimiento -->
+            </div> <!-- Fin de la sección del logo -->
+            
+            <nav class="menu"> <!-- Menú de navegación principal -->
+                <a href="listar.html"><i class="fa-solid fa-users"></i> Volver a la Lista</a> <!-- Enlace para regresar a la vista principal de la lista -->
+            </nav> <!-- Fin del menú de navegación -->
+        </aside> <!-- Fin de la barra lateral -->
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content"> <!-- Zona donde se ejecuta la búsqueda y resultados -->
+            <header class="top-bar"> <!-- Barra superior de la página -->
+                <h2>Búsqueda de Usuarios</h2> <!-- Encabezado principal del módulo de consulta -->
+            </header> <!-- Fin de la barra superior -->
+            
+            <section class="table-container" style="padding: 2rem;"> <!-- Tarjeta contenedora con relleno interno de 2rem -->
+                
+                <!-- CAJA DE BÚSQUEDA Y BOTÓN -->
+                <div style="display:flex; gap: 1rem; margin-bottom: 1.5rem;"> <!-- Contenedor flexible con separación entre componentes -->
+                    <input type="text" id="cajaBuscar" placeholder="Escriba el nombre a consultar..." style="flex:1; padding:0.6rem; border-radius:5px; border:1px solid #ccc;"> <!-- Input donde el usuario escribe el nombre (ID usado en la función buscarUsuario) -->
+                    <button class="btn-add" onclick="buscarUsuario()">Buscar</button> <!-- Botón que desencadena la búsqueda en el servidor Spring Boot -->
+                </div> <!-- Fin de la sección de controles de búsqueda -->
+
+                <!-- TABLA DE RESULTADOS DE BÚSQUEDA -->
+                <table class="user-table"> <!-- Tabla para estructurar la lista de respuestas traídas de la BD -->
+                    <thead> <!-- Encabezado de la tabla -->
+                        <tr> <!-- Fila de títulos de columna -->
+                            <th>ID</th> <!-- Columna 1: Muestra el ID único devuelto por la consulta -->
+                            <th>Nombre de Usuario</th> <!-- Columna 2: Muestra el nombre de usuario encontrado -->
+                            <th>Rol</th> <!-- Columna 3: Muestra el rol asignado al usuario -->
+                        </tr> <!-- Fin de la fila de encabezados -->
+                    </thead> <!-- Fin del encabezado -->
+                    
+                    <tbody id="tbodyBuscarResults"> <!-- Cuerpo de la tabla con ID usado en la función buscarUsuario() de usuarios_api.js para inyectar filas -->
+                        <!-- Resultados --> <!-- Espacio reservado donde JavaScript renderiza la respuesta del endpoint /findNombres -->
+                    </tbody> <!-- Fin del cuerpo de la tabla -->
+                </table> <!-- Fin de la tabla -->
+            </section> <!-- Fin del contenedor de la tabla -->
+        </main> <!-- Fin del área principal -->
+    </div> <!-- Fin del contenedor global -->
+
+    <!-- SCRIPTS -->
+    <script src="../../js/usuarios_api.js"></script> <!-- Carga la lógica JS que contiene la función buscarUsuario() y llamadas a Spring Boot -->
+</body> <!-- Fin del cuerpo de la página -->
+</html> <!-- Fin del documento HTML -->

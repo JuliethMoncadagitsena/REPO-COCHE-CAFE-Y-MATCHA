@@ -1,0 +1,82 @@
+/* --- ESTILOS CONFIGURACIÓN DE EMPRESA COCHÉ --- */
+
+.config-container {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: span 2; /* Ocupa todo el ancho */
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--cafe-oscuro);
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid var(--beige);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--cafe-medio);
+    outline: none;
+    box-shadow: 0 0 5px rgba(109, 76, 65, 0.2);
+}
+
+/* Botón Guardar */
+.btn-save {
+    background-color: var(--cafe-oscuro);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-save:hover {
+    background-color: var(--cafe-medio);
+    letter-spacing: 1px;
+}
+
+/* Responsive para celulares */
+@media (max-width: 600px) {
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
+input[type="file"] {
+    background: var(--hueso);
+    padding: 10px;
+    border: 2px dashed var(--cafe-claro);
+    border-radius: 10px;
+    cursor: pointer;
+}

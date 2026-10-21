@@ -1,0 +1,105 @@
+<!DOCTYPE html> <!-- Especifica al navegador que el documento utiliza el estándar HTML5 -->
+<html lang="es"> <!-- Define el idioma principal de la página como español -->
+<head> <!-- Inicio del bloque de metadatos y configuraciones del documento -->
+    <meta charset="UTF-8"> <!-- Configura la codificación UTF-8 para soportar tildes, ñ y caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea responsiva en móviles y pantallas pequeñas -->
+    <title>Gestión de Personal - COCHÉ CAFÉ</title> <!-- Define el nombre que aparece en la pestaña del navegador -->
+    
+    <!-- Hojas de estilo CSS -->
+    <link rel="stylesheet" href="../../css/base.css"> <!-- Carga estilos generales compartidos (variables, reset, fuentes) -->
+    <link rel="stylesheet" href="../../css/index_admin.css"> <!-- Carga estilos del panel de administración (sidebar, layouts) -->
+    <link rel="stylesheet" href="../../css/usuarios.css"> <!-- Carga estilos específicos para esta vista (tabla, formulario) -->
+    
+    <!-- Librerías externas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Carga la librería de iconos de Font Awesome -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Carga SweetAlert2 para mostrar alertas emergentes interactivas -->
+</head> <!-- Fin del bloque de metadatos -->
+
+<body> <!-- Inicio del cuerpo visible de la página -->
+    <div class="container"> <!-- Contenedor principal para organizar la maquetación en pantalla -->
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar"> <!-- Etiqueta semántica para el menú lateral de navegación -->
+            <div class="logo-section"> <!-- Sección dedicada al logo y nombre de la empresa -->
+              <img src="../../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar"> <!-- Muestra la imagen del logo (ID usado para JS) -->
+              <h3>COCHÉ CAFÉ</h3> <!-- Nombre comercial del establecimiento -->
+            </div> <!-- Fin de la sección del logo -->
+            
+            <nav class="menu"> <!-- Menú de navegación principal con los enlaces del sistema -->
+                <p class="menu-label">Operaciones</p> <!-- Separador visual para los módulos de la operación diaria -->
+                <a href="../index_admin.html"><i class="fa-solid fa-house"></i> Inicio</a> <!-- Enlace al panel principal -->
+                <a href="../mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a> <!-- Enlace al control de mesas -->
+                <a href="../productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a> <!-- Enlace al catálogo de productos -->
+                
+                <p class="menu-label">Administración</p> <!-- Separador visual para los módulos de gestión administrativa -->
+                <a href="../inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a> <!-- Enlace al control de stock -->
+                <a href="../reportes.html"><i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a> <!-- Enlace a balances y reportes -->
+                <a href="../cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a> <!-- Enlace a arqueos de caja -->
+                <a href="#" class="active"><i class="fa-solid fa-users"></i> Usuarios</a> <!-- Enlace activo destacado para esta vista -->
+                <a href="../configuracion.html"><i class="fa-solid fa-gears"></i> Configuración</a> <!-- Enlace a ajustes generales -->
+            </nav> <!-- Fin de la lista de navegación -->
+            
+            <div class="sidebar-footer"> <!-- Zona inferior del menú para acciones especiales -->
+              <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()"> <!-- Botón de salir que ejecuta JS al dar clic -->
+                   <i class="fa-solid fa-power-off"></i> Cerrar Sesión <!-- Icono y texto del botón de cierre de sesión -->
+              </a> <!-- Fin del botón -->
+            </div> <!-- Fin del pie de la barra lateral -->
+        </aside> <!-- Fin de la barra lateral -->
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content"> <!-- Zona donde se cargan los datos y el contenido del módulo -->
+            <header class="top-bar"> <!-- Barra superior de bienvenida e información del usuario -->
+                <div class="welcome-text"> <!-- Contenedor de títulos descriptivos -->
+                    <h2>Gestión de Personal</h2> <!-- Título del módulo actual -->
+                    <p>Control de acceso para meseros y administradores</p> <!-- Descripción corta del área -->
+                </div> <!-- Fin del texto de bienvenida -->
+                <img src="" id="user-avatar" class="avatar"> <!-- Avatar del usuario logueado (JS le asigna la imagen) -->
+            </header> <!-- Fin de la barra superior -->
+
+            <section class="table-container"> <!-- Tarjeta/sección blanca que encierra la tabla de usuarios -->
+                <!-- ENCABEZADO DE LA TABLA -->
+                <div class="table-header"> <!-- Fila superior con título, buscador y botón de añadir -->
+                    <h3>Usuarios del Sistema</h3> <!-- Encabezado secundario para la tabla -->
+
+                    <!-- CAMPO DE BÚSQUEDA -->
+                    <div class="search-box"> <!-- Contenedor estilizado del buscador -->
+                        <i class="fa-solid fa-magnifying-glass"></i> <!-- Icono de lupa descriptivo -->
+                         <input
+                            type="text"
+                            id="inputBuscar"
+                            placeholder="Buscar por ID, usuario o rol..."
+                            onkeyup="filtrarUsuarios()"
+                            style="border: none; background: transparent; outline: none; font-size: 14px; width: 220px;"
+                        >
+                    </div> <!-- Fin del contenedor del buscador -->
+
+                    <a href="nuevo.html" class="btn-add" style="text-decoration:none; display:inline-block;"> <!-- Enlace a la vista de creación -->
+                        <i class="fa-solid fa-plus"></i> Registrar Empleado <!-- Icono de suma y texto del botón -->
+                    </a> <!-- Fin del botón de registro -->
+                </div> <!-- Fin del encabezado superior de la tabla -->
+
+                <!-- TABLA DE USUARIOS -->
+                <table class="user-table"> <!-- Estructura de tabla con clase CSS para formatear borde y filas -->
+                    <thead> <!-- Encabezado de la tabla -->
+                        <tr> <!-- Fila de nombres de columnas -->
+                            <th>ID</th> <!-- Columna 1: Identificador único del usuario -->
+                            <th>Nombre de Usuario</th> <!-- Columna 2: Nombre de cuenta del usuario -->
+                            <th>Rol</th> <!-- Columna 3: Permiso asignado (Ej: Admin, Mesero) -->
+                            <th>Contraseña</th> <!-- Columna 4: Clave o estado de la clave -->
+                            <th>Acciones</th> <!-- Columna 5: Botones para Editar / Eliminar -->
+                        </tr> <!-- Fin de la fila de títulos -->
+                    </thead> <!-- Fin del encabezado de la tabla -->
+                    
+                    <tbody id="tbodyUsuarios"> <!-- Cuerpo de la tabla con ID para inyectar las filas dinámicamente -->
+                        <!-- Carga dinámica vía usuarios_api.js -->
+                    </tbody> <!-- Fin del cuerpo de la tabla -->
+                </table> <!-- Fin de la tabla -->
+            </section> <!-- Fin del contenedor de la tabla -->
+        </main> <!-- Fin del contenido principal -->
+    </div> <!-- Fin del contenedor global -->
+
+
+    <script src="../../js/usuarios_api.js"></script> <!-- Consume la API REST para consultar, filtrar y mostrar los usuarios -->
+    <script src="../../js/logo.js"></script> <!-- Carga dinámicamente el logo corporativo del establecimiento -->
+</body> <!-- Fin del cuerpo de la página -->
+</html> <!-- Fin del documento HTML -->

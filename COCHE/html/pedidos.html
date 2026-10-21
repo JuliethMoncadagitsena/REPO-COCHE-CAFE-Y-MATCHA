@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toma de Pedido - COCHÉ</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index_admin.css">
+    <link rel="stylesheet" href="../css/pedidos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar">
+                <h3>COCHÉ CAFÉ</h3>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">Operaciones</p>
+                <a href="../html/index_admin.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="../html/mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a>
+                <a href="../html/productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a>
+
+
+                <p class="menu-label">Administración</p>
+                <a href="../html/inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+                <a href="../html/reportes.html"><i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a>
+                <a href="../html/cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a>
+                <a href="../html/usuarios.html"><i class="fa-solid fa-users"></i> Usuarios</a>
+                <a href="../html/configuracion.html"><i class="fa-solid fa-gears"></i> Configuración</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()">
+                    <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content pedido-layout">
+            
+            <section class="catalogo-area">
+                <header class="top-bar">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="inputBusqueda" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+                        </div>
+                    </div>
+                    <div class="welcome-text">
+                        <h2 id="tituloMesa">Pedido - Mesa</h2>
+                        <p>Selecciona los productos del menú</p>
+                    </div>
+                </header>
+
+                <div class="categorias-grid">
+                    <button class="cat-btn active" onclick="filtrarCategoria('Todos')">Todos</button>
+                    <button class="cat-btn" onclick="filtrarCategoria('Cafés')">Cafés</button>
+                    <button class="cat-btn" onclick="filtrarCategoria('Postres')">Postres</button>
+                    <button class="cat-btn" onclick="filtrarCategoria('Bebidas frias')">Bebidas frías</button>
+                    <button class="cat-btn" onclick="filtrarCategoria('Bebidas calientes')">Bebidas calientes</button>
+                </div>
+
+                <div class="grid-productos" id="gridProductos">
+                    </div>
+            </section>
+
+            <aside class="resumen-comanda">
+                <div class="comanda-header">
+                    <div class="header-top">
+                        <h3><i class="fa-solid fa-list-check"></i> Comanda Actual</h3>
+                        <button class="btn-icon-mini" onclick="cambiarMesa()" title="Cambiar Mesa">
+                            <i class="fa-solid fa-arrows-rotate"></i> Mesa
+                        </button>
+                    </div>
+                    
+                    <div class="opciones-cuenta">
+                        <button class="btn-comanda" onclick="dividirCuenta()">
+                          <i class="fa-solid fa-columns"></i> Dividir
+                        </button>
+                        <button class="btn-secundario-mini" onclick="agregarDescuento()">
+                            <i class="fa-solid fa-tag"></i> Descuento
+                        </button>
+                        <button class="btn-secundario-mini" onclick="gestionarPropina()">
+                            <i class="fa-solid fa-hand-holding-dollar"></i> Propina
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="lista-articulos" id="listaPedido">
+                    </div>
+
+                <div class="footer-comanda">
+                    <div class="totales">
+                        <div class="total-row"><span>Subtotal</span> <span id="subtotal">$0</span></div>
+                        <div class="total-row" id="row-descuento" style="display:none; color: #d32f2f;">
+                            <span>Descuento</span> <span id="val-descuento">-$0</span>
+                        </div>
+                        <div class="total-row"><span>Propina</span> <span id="val-propina">$0</span></div>
+                        <div class="total-row bold"><span>Total</span> <span id="totalFinal">$0</span></div>
+                    </div>
+
+                    <div class="botones-finales">
+                        <button class="btn-confirmar-comanda" id="btnConfirmar" onclick="confirmarComanda()">
+                            <i class="fa-solid fa-utensils"></i> CONFIRMAR PEDIDO
+                        </button>
+                        
+                        <button class="btn-confirmar" id="btnPagar" onclick="irAFacturacion()" disabled style="display: none;">
+                            <i class="fa-solid fa-cash-register"></i> PROCESAR PAGO
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="../js/obligatorios.js"></script>
+    <script src="../js/pedidos.js"></script>
+</body>
+</html>

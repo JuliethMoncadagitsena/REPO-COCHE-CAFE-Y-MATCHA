@@ -1,0 +1,209 @@
+/* Importar una fuente moderna desde Google Fonts (Opcional) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- EL FONDO ANIMADO --- */
+body {
+    /* 1. Definimos el degradado con tus colores */
+    /* Usamos degradado lineal con un ángulo (-45deg) */
+    background: linear-gradient(-45deg, 
+        #bc9c61, /* Color Hueso */
+        #c19162, /* Color Beige claro */
+        #7c5434, /* Color Café suave */
+        #673f24  /* Color Café más oscuro */
+    );
+    
+    
+    /* 2. Hacemos el fondo "más grande" que la pantalla 
+       para que tenga espacio para moverse */
+    background-size: 400% 400%;
+    
+    /* 3. Aplicamos la animación: 
+       Nombre: 'movimientoFondo', Duración: 15s, Tipo: smooth (ease-in-out), Infinita */
+    animation: movimientoFondo 15s ease-in-out infinite;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* --- DEFINICIÓN DE LA ANIMACIÓN (@keyframes) --- */
+@keyframes movimientoFondo {
+    /* Al inicio (0%), el fondo está en la esquina superior izquierda */
+    0% {
+        background-position: 0% 50%;
+    }
+    /* A la mitad (50%), movemos el fondo a la esquina inferior derecha */
+    50% {
+        background-position: 100% 50%;
+    }
+    /* Al final (100%), vuelve al inicio para un ciclo suave */
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(111, 72, 10, 0.8);
+    text-align: center;
+
+}
+
+.logo-container .logo {
+    width: 150px;
+    margin-bottom: 0px;
+}
+
+h2 {
+    color: #4b2c20; /* Marrón café oscuro */
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #8d6e63;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+/* Cuando el toast tiene la clase 'show' */
+  visibility: visible;
+  /* Llama a 'fadein' para entrar y a 'fadeout' para salir */
+  /* Dura 0.5s en entrar y se queda 2.5s antes de empezar a salir */
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #4b2c20;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #6d4c41; /* Color café al hacer clic */
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: #6d4c41;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #4b2c20; /* Se oscurece al pasar el mouse */
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: #8d6e63;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+/* Estilo para la nota informativa en la esquina */
+.info-nota {
+    position: fixed; /* Se queda quieta aunque muevas la pantalla */
+    top: 20px;       /* Distancia desde arriba */
+    right: 20px;     /* Distancia desde la derecha */
+    background-color: rgba(75, 44, 32, 0.9); /* Café oscuro con transparencia */
+    color: #dcd5c8;  /* Letra color hueso */
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: 1px solid #b08968;
+    z-index: 1000;   /* Asegura que siempre esté por encima de todo */
+    max-width: 250px;
+}
+
+.info-nota hr {
+    border: 0;
+    border-top: 1px solid #dfc4ae;
+    margin: 8px 0;
+    
+}
+
+.info-nota strong {
+    color: #e6ccb2; /* Beige para resaltar los títulos */
+}
+/* Esto cambiará solo el color de los datos, no de las palabras 'Admin' o 'Mesero' */
+.dato-credencial {
+    color: #f1b883; /* Un color dorado para resaltar los datos de ingreso */
+    font-weight: normal; /* Para que no se vea tan gruesa la letra si prefieres */
+}
+/* Nota: Si el usuario está en un celular, la nota se vuelve más pequeña */
+@media (max-width: 600px) {
+    .info-nota {
+        top: 10px;
+        right: 10px;
+        font-size: 10px;
+        padding: 10px;
+    }
+}
+.toast {
+    visibility: hidden; /* Oculto por defecto */
+    min-width: 250px;
+    background-color: #4b2c20; /* Tu color café oscuro */
+    color: #fdf5e6; /* Tu color hueso */
+    text-align: center;
+    border-radius: 10px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1001; /* Por encima de la nota de ayuda */
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%); /* Lo centra abajo */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }

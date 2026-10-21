@@ -1,0 +1,80 @@
+<!DOCTYPE html> <!-- Define que este archivo es un documento HTML5 -->
+<html lang="es"> <!-- Indica que el idioma principal de la página es español -->
+<head>
+    <meta charset="UTF-8"> <!-- Configura la codificación de caracteres para aceptar tildes y ñ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la pantalla para que sea adaptable a celulares y tablets -->
+    <title>Nuevo Registro - COCHÉ CAFÉ</title> <!-- Define el título que aparece en la pestaña del navegador -->
+    
+    <!-- Enlaces a tus hojas de estilo CSS locales (estilos visuales) -->
+    <link rel="stylesheet" href="../../css/base.css"> <!-- Carga los estilos generales/base del proyecto -->
+    <link rel="stylesheet" href="../../css/index_admin.css"> <!-- Carga el diseño del panel de administración -->
+    <link rel="stylesheet" href="../../css/usuarios.css"> <!-- Carga los estilos específicos del formulario de usuarios -->
+    
+    <!-- Librerías externas de iconos y alertas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Carga los iconos de FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Carga la librería SweetAlert2 para mostrar ventanas emergentes bonitas -->
+</head>
+<body>
+    <div class="container"> <!-- Contenedor principal para organizar la maquetación en pantalla -->
+        
+        <!-- BARRA LATERAL (SIDEBAR) DE NAVEGACIÓN -->
+        <aside class="sidebar"> <!-- Menú lateral izquierdo del sistema -->
+            <div class="logo-section"> <!-- Sección del logo del establecimiento -->
+              <img src="../../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar"> <!-- Muestra el logo corporativo de COCHÉ CAFÉ -->
+              <h3>COCHÉ CAFÉ</h3> <!-- Nombre de la marca principal -->
+            </div> <!-- Fin de la sección del logo -->
+            
+            <nav class="menu"> <!-- Menú con enlaces de navegación -->
+                <a href="listar.html" class="active"> <!-- Botón activo para regresar a la tabla de usuarios -->
+                    <i class="fa-solid fa-users"></i> Volver a Usuarios <!-- Icono de usuarios y texto del botón -->
+                </a> <!-- Fin del enlace volver -->
+            </nav> <!-- Fin del menú de navegación -->
+        </aside> <!-- Fin de la barra lateral -->
+
+        <!-- ÁREA PRINCIPAL DE CONTENIDO -->
+        <main class="main-content"> <!-- Sección donde se ubica el formulario principal -->
+            <header class="top-bar"> <!-- Encabezado superior de la página -->
+                <div class="welcome-text"> <!-- Título e instrucciones principales -->
+                    <h2>Registrar Nuevo Empleado</h2> <!-- Encabezado indicando la acción actual -->
+                </div> <!-- Fin del bloque de texto de bienvenida -->
+                <img src="" id="user-avatar" class="avatar"> <!-- Espacio dinámico donde el JS colocará la foto de perfil del usuario logueado -->
+            </header> <!-- Fin del encabezado superior -->
+            
+            <!-- CONTENEDOR DEL FORMULARIO -->
+            <section class="table-container" style="padding: 2rem;"> <!-- Tarjeta contenedora con relleno interno (padding) -->
+                <form id="formNuevoUsuario"> <!-- Formulario agrupador de datos del nuevo empleado -->
+                    
+                    <!-- CAMPO 1: NOMBRE DE USUARIO -->
+                    <div style="margin-bottom: 1rem;"> <!-- Espaciado inferior para separar los campos -->
+                        <label><strong>Nombre de Usuario:</strong></label> <!-- Etiqueta descriptiva en negrita -->
+                        <input type="text" id="NOMBRE_USUARIO" name="NOMBRE_USUARIO" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Input que captura el nombre exacto coincidente con la columna NOMBRE_USUARIO de tu BD -->
+                    </div> <!-- Fin del contenedor del nombre -->
+                    
+                    <!-- CAMPO 2: CONTRASEÑA / PASSWORD -->
+                    <div style="margin-bottom: 1rem;"> <!-- Espaciado inferior para separar los campos -->
+                        <label><strong>Contraseña / Password:</strong></label> <!-- Etiqueta descriptiva de la clave -->
+                        <input type="password" id="PASSWORD" name="PASSWORD" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Input oculto (type="password") coincidente con la columna PASSWORD de tu BD -->
+                    </div> <!-- Fin del contenedor de contraseña -->
+                    
+                    <!-- CAMPO 3: ROL DEL SISTEMA -->
+                    <div style="margin-bottom: 1.5rem;"> <!-- Espaciado inferior mayor previo a los botones -->
+                        <label><strong>Rol del Sistema:</strong></label> <!-- Etiqueta descriptiva para elegir rol -->
+                        <select id="ROL" name="ROL" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Select de opciones desplegables coincidente con la columna ROL de tu BD -->
+                            <option value="Administrador">Administrador</option> <!-- Opción 1: Rol Administrador -->
+                            <option value="Usuario">Usuario</option> <!-- Opción 2: Rol Usuario / Mesero -->
+                        </select> <!-- Fin de la lista desplegable de rol -->
+                    </div> <!-- Fin del contenedor de rol -->
+                    
+                    <!-- ACCIONES DEL FORMULARIO -->
+                    <button type="button" onclick="guardarUsuario()" class="btn-add">Guardar Usuario</button> <!-- Botón que activa la función guardarUsuario() en usuarios_api.js para hacer el POST hacia Spring Boot -->
+                    <a href="listar.html" style="margin-left: 1rem; color: #4b2c20; text-decoration:none; font-weight: bold;">Cancelar</a> <!-- Enlace para cancelar y salir de la pantalla volviendo a la lista -->
+                </form> <!-- Fin del formulario -->
+            </section> <!-- Fin de la sección del contenedor del formulario -->
+        </main> <!-- Fin del contenido principal -->
+    </div> <!-- Fin del contenedor global -->
+
+    <!-- SCRIPT DE LÓGICA Y CONEXIÓN -->
+    <!-- Carga la lógica JS que se encarga de enviar los campos por API y gestionar la sesión del avatar -->
+    <script src="../../js/usuarios_api.js"></script>
+</body>
+</html>

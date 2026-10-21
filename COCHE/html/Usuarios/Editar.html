@@ -1,0 +1,86 @@
+<!DOCTYPE html> <!-- Declara el tipo de documento HTML5 -->
+<html lang="es"> <!-- Define el idioma de la página como español -->
+<head> <!-- Inicio del bloque de metadatos del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación UTF-8 para soportar tildes, ñ y caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Permite que la vista sea responsiva en dispositivos móviles -->
+    <title>Editar Usuario - COCHÉ CAFÉ</title> <!-- Título visible en la pestaña del navegador -->
+    
+    <!-- Hojas de estilos CSS -->
+    <link rel="stylesheet" href="../../css/base.css"> <!-- Estilos base globales (variables, fuentes, resets) -->
+    <link rel="stylesheet" href="../../css/index_admin.css"> <!-- Estilos de la estructura principal de administración -->
+    <link rel="stylesheet" href="../../css/usuarios.css"> <!-- Estilos específicos de formularios y tablas del módulo -->
+    
+    <!-- Librerías de terceros -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Íconos de Font Awesome -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Librería para modales y alertas elegantes -->
+</head> <!-- Fin del encabezado de metadatos -->
+
+<body> <!-- Inicio del cuerpo del documento -->
+    <div class="container"> <!-- Contenedor principal que organiza sidebar y main-content -->
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar"> <!-- Menú lateral de navegación -->
+            <div class="logo-section"> <!-- Sección del logo e identidad -->
+              <img src="../../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar"> <!-- Muestra la imagen del logo -->
+              <h3>COCHÉ CAFÉ</h3> <!-- Nombre del establecimiento -->
+            </div> <!-- Fin de la sección del logo -->
+            
+            <nav class="menu"> <!-- Menú de enlaces de la barra lateral -->
+                <a href="listar.html" class="active"><i class="fa-solid fa-users"></i> Volver a Usuarios</a> <!-- Botón para cancelar/regresar al listado -->
+            </nav> <!-- Fin de la navegación -->
+        </aside> <!-- Fin del menú lateral -->
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content"> <!-- Área de contenido donde se editan los datos -->
+            <header class="top-bar"> <!-- Barra superior de la vista -->
+                <div class="welcome-text"> <!-- Contenedor del título de la sección -->
+                    <h2>Editar Registro de Usuario</h2> <!-- Título del formulario -->
+                </div> <!-- Fin del texto de bienvenida -->
+            </header> <!-- Fin de la barra superior -->
+            
+            <section class="table-container" style="padding: 2rem;"> <!-- Tarjeta contenedora con margen interno de 2rem -->
+                
+                <!-- FORMULARIO DE EDICIÓN -->
+                <form id="formEditarUsuario"> <!-- Formulario detectado por usuarios_api.js para ejecutar cargarDatosEdicion() -->
+                    <!-- Campo oculto donde se guarda el ID real que enviará la petición PUT al backend -->
+                    <input type="hidden" id="idUSUARIOS" name="idUSUARIOS"> <!-- Almacena el idUSUARIOS sin mostrarlo al usuario -->
+
+                    <!-- Campo ID solo lectura -->
+                    <div style="margin-bottom: 1rem;"> <!-- Div contenedor del campo ID visible -->
+                        <label><strong>ID Registro (Lectura):</strong></label> <!-- Etiqueta descriptiva -->
+                        <input type="text" id="idVista" disabled style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; background-color: #eee; margin-top: 5px;"> <!-- Campo deshabilitado que muestra el ID solo para consulta -->
+                    </div> <!-- Fin del contenedor ID -->
+
+                    <!-- Campo Nombre de Usuario -->
+                    <div style="margin-bottom: 1rem;"> <!-- Div contenedor del nombre de usuario -->
+                        <label><strong>Nombre de Usuario:</strong></label> <!-- Etiqueta descriptiva -->
+                        <input type="text" id="NOMBRE_USUARIO" name="NOMBRE_USUARIO" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Input obligatorio para modificar el nombre -->
+                    </div> <!-- Fin del contenedor Nombre -->
+
+                    <!-- Campo Contraseña -->
+                    <div style="margin-bottom: 1rem;"> <!-- Div contenedor de la clave -->
+                        <label><strong>Contraseña / Password:</strong></label> <!-- Etiqueta descriptiva -->
+                        <input type="password" id="PASSWORD" name="PASSWORD" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Input obligatorio para actualizar la contraseña -->
+                    </div> <!-- Fin del contenedor Contraseña -->
+
+                    <!-- Campo Selección de Rol -->
+                    <div style="margin-bottom: 1.5rem;"> <!-- Div contenedor del rol -->
+                        <label><strong>Rol:</strong></label> <!-- Etiqueta descriptiva -->
+                        <select id="ROL" name="ROL" required style="width:100%; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc; margin-top: 5px;"> <!-- Lista desplegable obligatoria -->
+                            <option value="Administrador">Administrador</option> <!-- Opción 1: Rol de administrador -->
+                            <option value="Usuario">Usuario</option> <!-- Opción 2: Rol estándar / mesero -->
+                        </select> <!-- Fin del select de rol -->
+                    </div> <!-- Fin del contenedor Rol -->
+
+                    <!-- Botones de Acción -->
+                    <button type="button" onclick="actualizarUsuario()" class="btn-add">Actualizar Datos</button> <!-- Botón que dispara la función PUT actualizarUsuario() -->
+                    <a href="listar.html" style="margin-left: 1rem; color: #4b2c20; text-decoration:none; font-weight: bold;">Cancelar</a> <!-- Enlace para salir sin guardar cambios -->
+                </form> <!-- Fin del formulario -->
+            </section> <!-- Fin de la sección del formulario -->
+        </main> <!-- Fin del contenido principal -->
+    </div> <!-- Fin del contenedor principal -->
+
+    <!-- SCRIPTS -->
+    <script src="../../js/usuarios_api.js"></script> <!-- Script que gestiona la carga de datos del ID y la actualización vía API REST -->
+</body> <!-- Fin del cuerpo del documento -->
+</html> <!-- Fin del documento HTML -->

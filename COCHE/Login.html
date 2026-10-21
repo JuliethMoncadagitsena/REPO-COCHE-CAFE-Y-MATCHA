@@ -1,0 +1,54 @@
+<!DOCTYPE html>                                         <!-- Declara la versión de documento HTML5 -->
+<html lang="es">                                        <!-- Define el idioma principal como español -->
+<head>
+    <meta charset="UTF-8">                              <!-- Configuración para codificación de caracteres (tildes y ñ) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace el diseño adaptable a pantallas móviles -->
+    <title>Login - COCHÉ CAFÉ</title>                   <!-- Título visible en la pestaña del navegador -->
+    
+    <link rel="stylesheet" href="css/login.css">        <!-- Hoja de estilos de la interfaz de inicio de sesión -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Carga SweetAlert2 para mensajes emergentes -->
+</head>
+<body>
+
+    <div class="login-wrapper">                         <!-- Envoltorio principal de la maquetación -->
+        <div class="login-box">                         <!-- Tarjeta blanca del formulario de login -->
+            <div class="logo-container">                <!-- Contenedor para el logotipo corporativo -->
+                <img src="img/logo.jpg" alt="Logo COCHÉ CAFÉ" class="logo"> <!-- Muestra el logo de la cafetería -->
+            </div>
+
+            <h2>Iniciar Sesión</h2>                     <!-- Encabezado del formulario -->
+            <p>Gestión Integral de Cafetería</p>        <!-- Subtítulo del formulario -->
+
+            <form id="loginForm">                        <!-- Formulario agrupador de datos -->
+                <div class="input-group">               <!-- Grupo del campo de entrada para el usuario -->
+                    <label for="usuario">Usuario</label> <!-- Etiqueta descriptiva -->
+                    <!-- Input de texto donde se captura el usuario registrado en la BD -->
+                    <input type="text" id="usuario" name="usuario" placeholder="Ej: erika_admin" required>
+                </div>
+
+                <div class="input-group">               <!-- Grupo del campo de entrada para la contraseña -->
+                    <label for="password">Contraseña</label> <!-- Etiqueta descriptiva -->
+                    <!-- Input de contraseña que oculta los caracteres digitados -->
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <!-- Botón de envío que invoca la función validar() ubicada en js/login.js -->
+                <button type="button" class="btn-submit" onclick="validar()">
+                   INGRESAR
+                </button>
+            </form>
+
+            <div class="footer-links">
+              <!-- Aquí es donde se enlaza la función de JavaScript -->
+              <a href="#" onclick="recuperarContrasena(event)">¿Olvidaste tu contraseña?</a>
+          </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>                 <!-- Contenedor para notificaciones flotantes adicionales -->
+    
+
+    <!-- Carga del script que realiza la validación contra la API de Spring Boot -->
+    <script src="js/login.js"></script>
+</body>
+</html>

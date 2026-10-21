@@ -1,0 +1,143 @@
+
+:root {
+    --cafe-oscuro: #4b2c20;
+    --cafe-medio: #6d4c41;
+    --cafe-claro: #b08968;
+    --beige: #e6ccb2;
+    --hueso: #fdf5e6;
+    --blanco: #ffffff;
+    --shadow: rgba(74, 51, 45, 0.1);
+}
+
+/* 1. RESET Y CONFIGURACIÓN GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 1. RESET CRÍTICO */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Fija la altura al tamaño de la ventana */
+    width: 100vw;  /* Fija el ancho al tamaño de la ventana */
+    overflow: hidden; /* Evita que el body genere scrolls extraños */
+    background-color: var(--hueso);
+}
+
+/* 2. CONTENEDOR PRINCIPAL (EL MARCO) */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Ocupa exactamente el alto de la pantalla */
+    overflow: hidden; /* El contenedor no se desborda */
+}
+
+/* 3. SIDEBAR (LA BARRA LATERAL) */
+.sidebar {
+    width: 260px; /* Ancho fijo */
+    min-width: 260px; /* Evita que se encoja */
+    height: 100vh;
+    background-color: var(--cafe-oscuro);
+    color: var(--hueso);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+/* 4. MAIN PANEL (EL PROBLEMA ESTABA AQUÍ) */
+.main-panel {
+    flex: 1; /* Toma TODO el espacio restante de la derecha, NI UN PIXEL MÁS */
+    height: 100vh; /* Mismo alto que la pantalla */
+    overflow-y: auto; /* SOLO el panel tiene scroll hacia abajo si el contenido es largo */
+    overflow-x: hidden; /* PROHIBIDO el desborde hacia los lados */
+    padding: 30px 40px;
+    background-color: var(--hueso);
+    box-sizing: border-box; /* Asegura que el padding no sume ancho extra */
+}
+
+/* 5. TARJETAS QUE SE AJUSTAN AL ANCHO */
+.flex-content, .ventas-analisis-grid {
+    display: flex;
+    flex-wrap: wrap; /* Si no caben, bajan automáticamente en lugar de salirse */
+    gap: 20px;
+    width: 100%;
+}
+
+.section-container {
+    flex: 1; /* Se estiran para llenar el ancho */
+    min-width: 300px; /* Pero no se vuelven tan pequeñas que se rompan */
+    background: var(--hueso);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.section-container h4 {
+    margin-bottom: 20px;
+    color: var(--cafe-oscuro);
+    border-bottom: 2px solid var(--hueso);
+    padding-bottom: 10px;
+}
+
+/* 4. TABLAS ESTILO COCHÉ */
+.tabla-coche {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla-coche th {
+    background-color: var(--cafe-medio);
+    color: var(--hueso);
+    padding: 12px;
+    text-align: left;
+}
+
+.tabla-coche td {
+    padding: 12px;
+    border-bottom: 1px solid var(--hueso);
+}
+
+/* 5. NOTA INFORMATIVA (ESTILO FLOTANTE) */
+.nota-informativa {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+    background-color: var(--cafe-oscuro);
+    color: var(--hueso);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    border: 1px solid var(--cafe-medio);
+}
+
+
+/* 6. BOTONES GENERALES */
+.btn-primario {
+    background-color: var(--cafe-oscuro);
+    color: var(--hueso);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primario:hover {
+    background-color: var(--cafe-claro);
+    transform: translateY(-2px);
+}
+
+/* DIVISOR */
+.divisor {
+    border: 0;
+    border-top: 1px dashed var(--cafe-claro);
+    margin: 20px 0;
+    opacity: 0.5;
+}

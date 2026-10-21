@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mesas - COCHÉ</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index_admin.css">
+    <link rel="stylesheet" href="../css/reportes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+              <img src="../img/logo.jpg" alt="Logo" class="logo-small" id="logoSidebar">
+              <h3>COCHÉ CAFÉ</h3>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">Operaciones</p>
+                <a href="../html/index_admin.html"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="../html/mesas.html"><i class="fa-solid fa-mug-hot"></i> Mesas</a>
+                <a href="../html/productos.html"><i class="fa-solid fa-book-open"></i> Catalogo</a>
+
+
+                <p class="menu-label">Administración</p>
+                <a href="../html/inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+                <a href="#" class="active"> <i class="fa-solid fa-chart-pie"></i> Reportes Finanzas</a>
+                <a href="../html/cierre de caja.html"><i class="fa-solid fa-cash-register"></i> Cierre de Caja</a>
+                <a href="../html/Usuarios/Listar.html"><i class="fa-solid fa-users"></i> Usuarios</a>
+                <a href="../html/configuracion.html"><i class="fa-solid fa-gears"></i> Configuración</a>
+            </nav>
+            <div class="sidebar-footer">
+              <a href="javascript:void(0)" class="btn-logout" onclick="confirmarCierreSesion()">
+                 <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+              </a>
+            </div>
+        </aside>
+<div class="main-panel">
+    <div class="header-bienvenida">
+        <h2>Reportes y Control de Finanzas</h2>
+        <div class="saldo-inicial-container">
+            <label>Saldo Inicial:</label>
+            <input type="number" id="saldoInicial" class="input-coche-sm" placeholder="$ 0.00">
+            <button id="btnFijar" class="btn-primario-sm" onclick="fijarSaldo()">Fijar</button>
+            <button id="btnEditarSaldo" class="btn-secundario-sm" onclick="editarSaldo()" style="display:none;">Cambiar</button>
+        </div>
+    </div>
+
+    <div class="flex-content">
+        <div class="section-container">
+            <h4><i class="fas fa-wallet"></i> Gestión de Efectivo</h4>
+            <form id="form-finanzas">
+                <input type="text" id="desc" placeholder="Descripción (ej. Compra leche)" class="input-coche">
+                <input type="number" id="monto" placeholder="Monto $" class="input-coche">
+                <select id="tipo" class="input-coche">
+                    <option value="salida">Salida (Gasto Insumos) (-)</option>
+                    <option value="propina">Registro de Propinas (No Ingreso) (+)</option>
+                </select>
+                <button type="button" class="btn-primario" onclick="confirmarRegistro()">Registrar Movimiento</button>
+            </form>
+        </div>
+
+        <div class="section-container">
+            <h4><i class="fas fa-list"></i> Flujo de Caja del Día</h4>
+            <div class="table-scroll">
+                <table class="tabla-coche">
+                    <thead>
+                        <tr>
+                            <th>Detalle</th>
+                            <th>Tipo</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-movimientos">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divisor">
+
+    <div class="ventas-analisis-grid">
+        <div class="section-container">
+            <h4><i class="fas fa-shopping-bag"></i> Historial de Ventas (Ingreso Neto)</h4>
+            <div class="filtros">
+                <input type="date" class="input-coche-sm">
+                <select class="input-coche-sm">
+                    <option>Todas las Categorías</option>
+                    <option>Bebidas Calientes</option>
+                    <option>Bebidas Frías</option>
+                    <option>Repostería</option>
+                </select>
+            </div>
+            <table class="tabla-coche">
+                <tbody id="tabla-ventas-reales">
+                    <tr>
+                        <td>17/04/2026</td>
+                        <td>Café Capuchino</td>
+                        <td class="monto-venta">$8.500</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn-ver-mas" onclick="verMasVentas()">Ver más historial...</button>
+        </div>
+
+<div class="section-container">
+    <h4><i class="fas fa-chart-bar"></i> Productos más Vendidos</h4>
+    <div class="grafica-container">
+        <canvas id="graficaVentas"></canvas>
+    </div>
+    
+    <div class="total-ingresos-box" style="background-color: #4b2c20; border-radius: 15px; padding: 20px; margin-top: 20px; display: flex; align-items: center; justify-content: space-between; color: white;">
+        
+        <div class="izq-filtros" style="display: flex; flex-direction: column; gap: 10px;">
+            <h4 style="margin: 0; color: white; font-size: 1.1em; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-money-bill-wave"></i> TOTAL INGRESOS
+            </h4>
+            
+            <div style="display: flex; gap: 15px;">
+                <div class="fecha-grupo">
+                    <label style="font-size: 0.8em; display: block; opacity: 0.8;">Desde:</label>
+                    <input type="date" id="fechaDesde" class="input-coche-sm" onchange="actualizarReporte()" style="border-radius: 5px; border: none; padding: 3px 8px;">
+                </div>
+                <div class="fecha-grupo">
+                    <label style="font-size: 0.8em; display: block; opacity: 0.8;">Hasta:</label>
+                    <input type="date" id="fechaHasta" class="input-coche-sm" onchange="actualizarReporte()" style="border-radius: 5px; border: none; padding: 3px 8px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="monto-total" style="text-align: right;">
+            <span id="totalIngresos" style="font-size: 3em; font-weight: bold; color: white; line-height: 1;">$ 0.000</span>
+        </div>
+        
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/obligatorios.js"></script>
+    <script src="../js/reportes.js"></script>
+
+    
+</body>
+</html>
